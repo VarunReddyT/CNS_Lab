@@ -1,6 +1,6 @@
 // 1.Write a Java program that contains a string (char pointer) with a value 'Hello World'. The program should XOR each character in this string with 0 and displays the result.
 
-public class XORWithZero_1 {
+public class p1_XORWithZero {
     public static void main(String[] args) {
         // Define the string
         String text = "Hello World";

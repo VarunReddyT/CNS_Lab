@@ -1,6 +1,6 @@
 // 2.Write a java program that contains a string (char pointer) with a value 'Hello World'. The program should AND or and XOR each character in this string with 127 and displays the result.
 
-public class ANDXOR_2 {
+public class p2_ANDXOR {
     public static void main(String[] args) {
         // Define the string
         String text = "Hello World";

@@ -1,30 +1,30 @@
-// 4.Write a java program to implement the DES algorithm logic?
+// 5.Write a java program to implement the Blowfish algorithm logic?
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.util.Base64;
 
-public class DES_4 {
+public class p5_Blowfish {
 
-    // Method to generate a secret key for DES
-    public static SecretKey generateKey() throws Exception {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");
-        keyGenerator.init(56); // DES uses a 56-bit key size
+    // Method to generate a secret key for Blowfish
+    public static SecretKey generateKey(int keySize) throws Exception {
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("Blowfish");
+        keyGenerator.init(keySize); // keySize can be between 32 and 448 bits
         return keyGenerator.generateKey();
     }
 
-    // Method to encrypt data using the DES algorithm
+    // Method to encrypt data using the Blowfish algorithm
     public static String encrypt(String plaintext, SecretKey key) throws Exception {
-        Cipher cipher = Cipher.getInstance("DES");
+        Cipher cipher = Cipher.getInstance("Blowfish");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes());
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
-    // Method to decrypt data using the DES algorithm
+    // Method to decrypt data using the Blowfish algorithm
     public static String decrypt(String ciphertext, SecretKey key) throws Exception {
-        Cipher cipher = Cipher.getInstance("DES");
+        Cipher cipher = Cipher.getInstance("Blowfish");
         cipher.init(Cipher.DECRYPT_MODE, key);
         byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(ciphertext));
         return new String(decryptedBytes);
@@ -32,9 +32,8 @@ public class DES_4 {
 
     public static void main(String[] args) {
         try {
-            // Generate a secret key for DES
-            SecretKey secretKey = generateKey();
-
+            // Generate a secret key for Blowfish
+            SecretKey secretKey = generateKey(128); // You can specify a key size between 32 and 448 bits
             // Plain text to be encrypted
             String plaintext = "Hello, World!";
             System.out.println("Original Text: " + plaintext);

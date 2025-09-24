@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class HillCipher_3c {
+public class p3c_HillCipher {
     // Function to perform matrix multiplication
     public static int[] matrixMultiply(int[][] keyMatrix, int[] messageVector) {
         int[] result = new int[messageVector.length];

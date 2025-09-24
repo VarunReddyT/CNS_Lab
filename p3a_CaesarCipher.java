@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class CaesarCipher_3a {
+public class p3a_CaesarCipher {
     // Method to encrypt the message using Caesar Cipher
     public static String encrypt(String message, int shift) {
         StringBuilder result = new StringBuilder();

@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class SubstitutionCipher_3b {
+public class p3b_SubstitutionCipher {
     // Alphabet used for reference
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
