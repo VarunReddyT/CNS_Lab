@@ -9,6 +9,27 @@ import javax.crypto.Cipher;
 
 public class p8_RSA {
 
+    public static byte[] encrypt(String plaintext, PublicKey publicKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+        return cipher.doFinal(plaintext.getBytes());
+    }
+    public static String decrypt(byte[] ciphertext, PrivateKey privateKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        byte[] decryptedBytes = cipher.doFinal(ciphertext);
+        return new String(decryptedBytes);
+    }
+    public static void printKeyDetails(PublicKey publicKey, PrivateKey privateKey) throws Exception {
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        RSAPublicKeySpec publicKeySpec = keyFactory.getKeySpec(publicKey, RSAPublicKeySpec.class);
+        RSAPrivateKeySpec privateKeySpec = keyFactory.getKeySpec(privateKey, RSAPrivateKeySpec.class);
+
+        System.out.println("Public Key Modulus: " + publicKeySpec.getModulus());
+        System.out.println("Public Key Exponent: " + publicKeySpec.getPublicExponent());
+        System.out.println("Private Key Modulus: " + privateKeySpec.getModulus());
+        System.out.println("Private Key Exponent: " + privateKeySpec.getPrivateExponent());
+    }
     public static void main(String[] args) {
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
@@ -31,26 +52,5 @@ public class p8_RSA {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    public static byte[] encrypt(String plaintext, PublicKey publicKey) throws Exception {
-        Cipher cipher = Cipher.getInstance("RSA");
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        return cipher.doFinal(plaintext.getBytes());
-    }
-    public static String decrypt(byte[] ciphertext, PrivateKey privateKey) throws Exception {
-        Cipher cipher = Cipher.getInstance("RSA");
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        byte[] decryptedBytes = cipher.doFinal(ciphertext);
-        return new String(decryptedBytes);
-    }
-    public static void printKeyDetails(PublicKey publicKey, PrivateKey privateKey) throws Exception {
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        RSAPublicKeySpec publicKeySpec = keyFactory.getKeySpec(publicKey, RSAPublicKeySpec.class);
-        RSAPrivateKeySpec privateKeySpec = keyFactory.getKeySpec(privateKey, RSAPrivateKeySpec.class);
-
-        System.out.println("Public Key Modulus: " + publicKeySpec.getModulus());
-        System.out.println("Public Key Exponent: " + publicKeySpec.getPublicExponent());
-        System.out.println("Private Key Modulus: " + privateKeySpec.getModulus());
-        System.out.println("Private Key Exponent: " + privateKeySpec.getPrivateExponent());
     }
 }
