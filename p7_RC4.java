@@ -19,7 +19,7 @@ public class p7_RC4 {
         }
         int j = 0;
         for (int i = 0; i < 256; i++) {
-            j = (j + S[i] + key[i % keyLength]) & 0xFF;
+            j = (j + S[i] + key[i % keyLength]) & 255;
             swap(i, j);
         }
     }
@@ -42,10 +42,10 @@ public class p7_RC4 {
     
     // Generate the next byte of the key stream
     private byte keyItem() {
-        x = (x + 1) & 0xFF;
-        y = (y + S[x]) & 0xFF;
+        x = (x + 1) & 255;
+        y = (y + S[x]) & 255;
         swap(x, y);
-        return S[(S[x] + S[y]) & 0xFF];
+        return S[(S[x] + S[y]) & 255];
     }
 
     public static void main(String... rc4Algo) {

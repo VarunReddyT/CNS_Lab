@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class p3c_HillCipherSimplified {
 
-    // Encrypt function
     static String encrypt(String p, int[][] k) {
         int x = p.charAt(0) - 'A';
         int y = p.charAt(1) - 'A';
@@ -13,7 +12,6 @@ public class p3c_HillCipherSimplified {
         return "" + c1 + c2;
     }
 
-    // Decrypt function
     static String decrypt(String c, int[][] k) {
         int det = (k[0][0]*k[1][1] - k[0][1]*k[1][0]) % 26;
         if (det < 0) det += 26;
@@ -56,14 +54,27 @@ public class p3c_HillCipherSimplified {
             for (int j=0;j<2;j++)
                 key[i][j] = sc.nextInt();
 
-        System.out.print("Enter plaintext (2 letters): ");
+        System.out.print("Enter plaintext : ");
         String plaintext = sc.next().toUpperCase();
+        if (plaintext.length() % 2 != 0) {
+            plaintext += "X";
+        }
+        StringBuilder cipherText = new StringBuilder();
+        StringBuilder decryptedText = new StringBuilder();
 
-        String cipher = encrypt(plaintext, key);
-        System.out.println("Encrypted Text: " + cipher);
+        for (int i = 0; i < plaintext.length(); i += 2) {
+            String block = plaintext.substring(i, i + 2);
+            cipherText.append(encrypt(block, key));
+        }
 
-        System.out.println("Decrypted Text: " + decrypt(cipher, key));
+        System.out.println("Encrypted Text: " + cipherText);
 
+        for (int i = 0; i < cipherText.length(); i += 2) {
+            String block = cipherText.substring(i, i + 2);
+            decryptedText.append(decrypt(block, key));
+        }
+
+        System.out.println("Decrypted Text: " + decryptedText);
         sc.close();
     }
 }
