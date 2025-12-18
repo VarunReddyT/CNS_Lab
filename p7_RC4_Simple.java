@@ -40,8 +40,8 @@ public class p7_RC4_Simple {
 
     public static void main(String[] args) {
 
-        String key = "mysecretkey";        // user-defined key
-        String plaintext = "Hello World";  // given text
+        String key = "mysecretkey"; 
+        String plaintext = "Hello World";
 
         byte[] encrypted = rc4(plaintext.getBytes(), key.getBytes());
         byte[] decrypted = rc4(encrypted, key.getBytes());
